@@ -1,0 +1,169 @@
+body {
+    height: 100vh;
+}
+
+svg {
+    position: absolute;
+}
+
+.circle-left {
+    left: 0%;
+    position: absolute;
+    z-index: 1000;
+    transform: translateY(50vh);
+}
+
+.circle-right {
+    transform: rotate(180deg);
+}
+
+.heading {
+    text-align: center;
+    font-size: 2rem;
+    color: #000;
+    padding-top: 20vh;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 30vh;
+    margin: 0 auto;
+    cursor: pointer;
+
+    #boardCVS {
+        position: absolute;
+        border: 1px solid #000;
+    }
+
+    .playerOpt {
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        margin-top: 10%;
+
+        h2 {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .pTitle {
+            margin-top: -15%;
+        }
+
+        .pTitle__sym {
+            margin-top: 15%;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        .pc, .x {
+            padding: 5px;
+            background: #fff;
+            color: #000;
+            font-size: 1.5em;
+            border-radius: 5px;
+            margin-left: 70px;
+            width: 150px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #000;
+            margin-top: 5%;
+        }
+
+        .local, .o {
+            padding: 5px;
+            background-color: #fff;
+            color: #000;
+            font-size: 1.5em;
+            border-radius: 5px;
+            margin-left: 10px;
+            width: 150px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #000;
+            margin-top: 5%;
+        }
+
+        .local:hover,
+        .pc:hover,
+        .x:hover,
+        .o:hover {
+            background-color: #011627;
+            color: #fff;
+        }
+
+        .play {
+            font-size: 1.5em;
+            width: 100px;
+            display: block;
+            margin: 25px auto;
+            border-radius: 5px;
+            border: 1px solid #011627;
+            text-align: center;
+            padding: 10px;
+            background-color: #011627;
+            color: #FFF;
+            cursor: pointer;
+            transition: 100ms width ease-in;
+        }
+
+        .play:hover{
+            width: 120px;
+        }
+    }
+}
+
+.hide {
+    display: none;
+}
+
+.gameOver{
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    background-color: rgba(0, 0, 0, 0.95);
+
+    h1{
+        text-align: center;
+        font-size: 50px;
+        color: #fff;
+        margin: 40px 0 20px 0;
+    }
+
+    .winner-img{
+        display: block;
+        margin: 20px auto;
+    }
+
+    .play{
+        font-size: 1.5em;
+        width: 150px;
+        display: block;
+        margin: 25px auto;
+        border-radius: 5px;
+        border: 1px solid #fff;
+        text-align: center;
+        padding: 10px;
+        background-color: #fff;
+        color: #000;
+        cursor: pointer;
+        transition: 100ms width ease-in;
+    }
+    .play:hover{
+        width: 200px;
+    }
+}
+
+.active {
+    background-color: #0b0127 !important;
+    color: #fff !important;
+}
+
+.red {
+    background: rgb(119, 0, 0);
+}

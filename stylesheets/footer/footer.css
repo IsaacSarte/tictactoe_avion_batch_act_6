@@ -1,0 +1,28 @@
+footer {
+  margin-top: 65vh;
+  padding: 0rem 1rem;
+  background: #050505;
+  height: 10.7vh;
+}
+
+footer hr {
+  width: 70%;
+  -webkit-transform: translateY(2rem);
+          transform: translateY(2rem);
+  margin: 0 auto;
+  height: 5px;
+  background: -webkit-gradient(linear, left top, right top, from(violet), to(blue));
+  background: linear-gradient(to right, violet, blue);
+  border: none;
+}
+
+footer p {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
+/*# sourceMappingURL=footer.css.map */

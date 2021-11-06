@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe [Avion] || Home</title>
+
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/header/header.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/home/home.css" type="text/css" />
+</head>
+<body>
+
+    <div class="loader">
+        <img src="assets/loader/preloader.gif" />
+    </div>
+
+    <header>
+        <a href="" class="logo">Tic Tac Toe</a>
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Play</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </header>
+
+    <div class="container">
+        <div class="item left">
+            <p class="left__p">Version P1.0 <img src="assets/homeTop.png" /> <br> <img src="assets/homeTop_2.png" class="p_bot" /></p>
+            <h1 class="item__left--heading">Welcome to Tic Tac Toe</h1>
+            <span class="item__left--span">by Isaac Sarte</span>
+        </div>
+        <div class="item right">
+            <div class="xLine">
+                <div class="xLine__fromLeft">|</div>
+                <div class="xLine__fromRight">|</div>
+            </div>
+        </div>
+    </div>
+    <div class="cssload-container rightCircle">
+        <ul class="cssload-flex-container">
+            <li>
+                <span class="cssload-loading"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="bot">
+        <img src="assets/homeBot.png" />
+    </div>
+
+<!-- Script -->
+
+    <script type="text/javascript">
+        var loader = document.querySelector(".loader")
+        window.addEventListener("load", vanish);
+        
+        function vanish() {
+            loader.classList.add("disappear");
+        }
+    </script>
+
+<!-- End of Script -->
+
+</body>
+</html>

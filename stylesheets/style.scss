@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@500&family=Roboto:wght@100;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 5;
+}
+
+.disappear {
+    animation: vanish 2s forwards;
+}
+
+    @keyframes vanish {
+        50% {
+            opacity: 2;
+        }
+        75% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe || Game</title>
+    
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/ani/ani.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/header/header.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/game/game.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/footer/footer.css" type="text/css" />
+</head>
+<body>
+
+    <div class="loader">
+        <img src="assets/loader/preloader.gif" />
+    </div>
+
+    <header>
+        <a href="" class="logo">Tic Tac Toe</a>
+        <div class="toggle"></div>
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Play</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </header>
+
+    <h1 class="heading bounce-header">Play Tic Tac Toe Now</h1>
+
+    <div class="circle-left fade-in-svg">
+        <svg>
+            <circle cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
+        </svg>
+    </div>
+
+    <div class="circle-right fade-in-svg">
+        <svg>
+            <circle cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
+        </svg>
+    </div>
+
+    <div class="container fade-in" data-container>
+        
+        <canvas id="boardCVS" width="450px" height="450px"></canvas>
+        <div class="playerOpt">
+            <h2 class="pTitle">Play Against: </h2>
+            <div class="pc">PC</div>
+            <div class="local">FRIEND</div>
+
+            <h2 class="pTitle__sym">Player 1 Choose Your Symbol: </h2>
+            <div class="x">X</div>
+            <div class="o">O</div>
+
+            <div class="play">START</div>
+        </div>
+        <div class="gameOver hide"></div>
+
+    </div>
+
+    <footer>
+        <hr/>
+        <p>by Isaac Sarte</p>
+    </footer>
+
+<!-- Script -->
+
+    <script>
+        var loader = document.querySelector(".loader")
+        window.addEventListener("load", vanish);
+        
+        function vanish() {
+            loader.classList.add("disappear");
+        }
+    </script>
+
+    <!-- Main Game Functions -->
+    <script src="scripts/opt.js"></script>
+    <script src="scripts/function.js"></script>
+
+<!-- End of Script -->
+
+</body>
+</html>

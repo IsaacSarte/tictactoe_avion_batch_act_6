@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+
+    <link rel="stylesheet" href="stylesheets/style.css" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/header/header.css" type="text/css" />
+</head>
+<body>
+
+    <div class="loader">
+        <img src="assets/loader/preloader.gif" />
+    </div>
+
+    <header>
+        <a href="" class="logo">Tic Tac Toe</a>
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="game.html">Play</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </header>
+
+<!-- Script -->
+
+    <script type="text/javascript">
+        var loader = document.querySelector(".loader")
+        window.addEventListener("load", vanish);
+        
+        function vanish() {
+            loader.classList.add("disappear");
+        }
+    </script>
+
+<!-- End of Script -->
+
+</body>
+</html>

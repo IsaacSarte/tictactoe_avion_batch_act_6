@@ -1,0 +1,23 @@
+footer {
+    margin-top: 65vh;
+    padding: 0rem 1rem;
+    background: rgb(5, 5, 5);
+    height: 10.7vh;
+
+    hr {
+        width: 70%;
+        transform: translateY(2rem);
+        margin: 0 auto;
+        height: 5px;
+        background: linear-gradient(to right, violet, blue);
+        border: none;
+    }
+
+    p {
+        align-items: center;
+        text-align: center;
+        margin-top: 3rem;
+        font-size: 1.5rem;
+        color: #fff;
+    }
+}
