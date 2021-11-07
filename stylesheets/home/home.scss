@@ -314,14 +314,17 @@
             }
             .item__left--heading {
                 margin-top: -5rem;
-                margin-left: 45vw;
-                font-size: 2.5rem;
+                margin-left: 10vw;
+                font-size: 3.25rem;
             }
             .item__left--span {
-                margin-left: 45vw;
+                margin-left: 10vw;
                 font-size: 1.45rem;
             }
         }
+    }
+    .bot {
+        display: none;
     }
 }
 @media screen and (min-width: 320px) and (max-width: 375px) {
@@ -345,10 +348,6 @@
         }
     }
     .bot {
-        img {
-            height: 150px;
-            margin-bottom: -20vh;
-            margin-left: -40vw;
-        }
+        display: none;
     }
 }

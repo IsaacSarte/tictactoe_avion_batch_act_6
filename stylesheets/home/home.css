@@ -498,12 +498,15 @@
   }
   .container .left .item__left--heading {
     margin-top: -5rem;
-    margin-left: 45vw;
-    font-size: 2.5rem;
+    margin-left: 10vw;
+    font-size: 3.25rem;
   }
   .container .left .item__left--span {
-    margin-left: 45vw;
+    margin-left: 10vw;
     font-size: 1.45rem;
+  }
+  .bot {
+    display: none;
   }
 }
 
@@ -523,10 +526,8 @@
     margin-left: 20vw;
     font-size: 1.5rem;
   }
-  .bot img {
-    height: 150px;
-    margin-bottom: -20vh;
-    margin-left: -40vw;
+  .bot {
+    display: none;
   }
 }
 /*# sourceMappingURL=home.css.map */
