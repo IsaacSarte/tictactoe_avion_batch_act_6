@@ -63,6 +63,7 @@ playBtn.addEventListener('click', () => {
     init(player, Opponent);
     options.classList.add('hide');
     whoseTurn.classList.remove('hide');
+    whoseTurn.classList.add('remCursor');
     mainContainer.classList.add('cursor');
     nextTurn.textContent = "Player 1's Turn";
 })

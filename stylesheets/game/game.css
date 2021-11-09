@@ -160,6 +160,10 @@ svg {
   cursor: pointer;
 }
 
+.remCursor {
+  cursor: default;
+}
+
 .hover {
   background: #bfbfbf;
 }
