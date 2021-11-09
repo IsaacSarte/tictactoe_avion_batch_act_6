@@ -2,6 +2,9 @@
 
 // Player Options Selector
 const options = document.querySelector('.playerOpt');
+const whoseTurn = document.querySelector('.turnMove');
+const nextTurn = document.querySelector('.turnMove__who');
+const mainContainer = document.querySelector('.container');
 
 // Selected Buttons
 const pcBtn = document.querySelector('.pc');
@@ -59,6 +62,9 @@ playBtn.addEventListener('click', () => {
     }
     init(player, Opponent);
     options.classList.add('hide');
+    whoseTurn.classList.remove('hide');
+    mainContainer.classList.add('cursor');
+    nextTurn.textContent = "Player 1's Turn";
 })
 
 const switchActive = (off, on) => {

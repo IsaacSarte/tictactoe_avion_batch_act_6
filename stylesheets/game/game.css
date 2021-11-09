@@ -39,12 +39,15 @@ svg {
           align-items: center;
   top: 30vh;
   margin: 0 auto;
-  cursor: pointer;
 }
 
 .container #boardCVS {
   position: absolute;
   border: 1px solid #000;
+}
+
+.container #boardCVS:hover {
+  background: #bfbfbf;
 }
 
 .container .playerOpt {
@@ -125,6 +128,40 @@ svg {
 
 .container .playerOpt .play:hover {
   width: 120px;
+}
+
+.turnMove {
+  background: #011627;
+  width: 30%;
+  height: 50px;
+  border-radius: 15px;
+  -webkit-transform: translateY(-17rem);
+          transform: translateY(-17rem);
+  position: absolute;
+}
+
+.turnMove .turnMove__who {
+  font-size: 1.5em;
+  margin-top: 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.hover {
+  background: #bfbfbf;
 }
 
 .hide {

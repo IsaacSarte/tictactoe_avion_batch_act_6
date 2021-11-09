@@ -240,10 +240,12 @@ const init = (player, Opponent) => {
             <div class = "play" onclick = "location.reload()">Play Again?</div>
         `;
         gameOver.classList.remove('hide');
+        whoseTurn.classList.add('hide');
     }
 
     // Draw the board Again
     const printOnBoard = (player, i, j) => {
+        let turnMove = player === 'X' ? nextTurn.textContent = "O's Turn" : nextTurn.textContent = "X's Turn";
         let symImg = player === 'X' ? xImage : oImage;
         context.drawImage(symImg, j * space, i * space);
     }

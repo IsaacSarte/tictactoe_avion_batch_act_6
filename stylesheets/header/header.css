@@ -58,4 +58,68 @@ header ul li a.active, header ul li a:hover {
   color: #fff;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 991px) {
+  #header {
+    padding: 150px 20px;
+  }
+  header {
+    padding: 20px;
+  }
+  header ul li {
+    margin: 10px 0;
+  }
+  header ul li a {
+    margin-left: 0;
+    font-size: 1.5em;
+    color: #000;
+  }
+  .ul_nav {
+    display: none;
+  }
+  .ul_nav.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: url(../../assets/navbar/menu.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    z-index: 1000;
+    opacity: 5;
+  }
+  .toggle.active {
+    background: url(../../assets/navbar/close.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 2px;
+  }
+}
 /*# sourceMappingURL=header.css.map */
