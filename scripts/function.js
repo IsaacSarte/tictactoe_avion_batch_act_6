@@ -46,6 +46,7 @@ const init = (player, Opponent) => {
                 context.strokeRect(j * space, i * space,  space, space);
             }
         }
+        console.log(ticTacToeBoard);
     }
     printBoard();
 
@@ -94,6 +95,7 @@ const init = (player, Opponent) => {
 
             // Draw the move on the boardCVS
             printOnBoard(player.pc, spaceCVS.i, spaceCVS.j);
+            console.log(printOnBoard);
 
             // Player won?
             if(isWinner(gameData, player.pc)) {
