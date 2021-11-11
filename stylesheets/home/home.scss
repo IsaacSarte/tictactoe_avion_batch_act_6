@@ -35,17 +35,16 @@ section {
             animation-delay: 2s;
         }
 
-        h1 {
-            font-size: 2rem;
-            opacity: 0;
-            animation: fade 1s linear forwards;
-            animation-delay: 4s;
-        }
-
         .heading {
             font-size: 4rem;
             opacity: 0;
             animation: fromLeft 1s linear forwards;
+            animation-delay: 4s;
+        }
+
+        h1 {
+            opacity: 0;
+            animation: fade 1s linear forwards;
             animation-delay: 4s;
         }
 
@@ -140,7 +139,7 @@ section {
                         }
     
                         i:hover {
-                            transform: translateX(1rem);
+                            transform: scale(1.2);
                             color: rgb(72, 0, 103);
                         }
                     }

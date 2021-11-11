@@ -2,6 +2,11 @@ body {
   height: 100vh;
 }
 
+:root {
+  --cell-size: 150px;
+  --mark-size: calc(var(--cell-size) * 0.9);
+}
+
 svg {
   position: absolute;
 }
@@ -39,15 +44,16 @@ svg {
           align-items: center;
   top: 30vh;
   margin: 0 auto;
+  opacity: 0;
+  -webkit-animation: fade 1s linear forwards;
+          animation: fade 1s linear forwards;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
 }
 
-.container #boardCVS {
+.container .boardCVS {
   position: absolute;
   border: 1px solid #000;
-}
-
-.container #boardCVS:hover {
-  background: #bfbfbf;
 }
 
 .container .playerOpt {
@@ -74,7 +80,7 @@ svg {
   display: inline-block;
 }
 
-.container .playerOpt .pc, .container .playerOpt .x {
+.container .playerOpt .pc, .container .playerOpt .x, .container .playerOpt .x2 {
   padding: 5px;
   background: #fff;
   color: #000;
@@ -88,7 +94,7 @@ svg {
   margin-top: 5%;
 }
 
-.container .playerOpt .local, .container .playerOpt .o {
+.container .playerOpt .local, .container .playerOpt .o, .container .playerOpt .o2 {
   padding: 5px;
   background-color: #fff;
   color: #000;
@@ -105,14 +111,20 @@ svg {
 .container .playerOpt .local:hover,
 .container .playerOpt .pc:hover,
 .container .playerOpt .x:hover,
-.container .playerOpt .o:hover {
+.container .playerOpt .o:hover,
+.container .playerOpt .x2:hover,
+.container .playerOpt .o2:hover {
   background-color: #011627;
   color: #fff;
 }
 
+.container .playerOpt .xHide, .container .playerOpt .oHide {
+  display: none;
+}
+
 .container .playerOpt .play {
   font-size: 1.5em;
-  width: 100px;
+  width: 200px;
   display: block;
   margin: 25px auto;
   border-radius: 5px;
@@ -127,7 +139,11 @@ svg {
 }
 
 .container .playerOpt .play:hover {
-  width: 120px;
+  width: 250px;
+}
+
+.container .playerOpt .sHide {
+  display: none;
 }
 
 .turnMove {
@@ -156,12 +172,438 @@ svg {
   color: #fff;
 }
 
+.board {
+  position: fixed;
+  width: 100vw;
+  height: 90vh;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  background-color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.cell.X,
+.cell.Circle {
+  cursor: not-allowed;
+}
+
+/* --X START-- */
+.cell.X::before,
+.cell.X::after {
+  background-color: #011627;
+}
+
+.board.X .cell:not(.X):not(.Circle):hover::before,
+.board.X .cell:not(.X):not(.Circle):hover::after {
+  background-color: #021f36;
+}
+
+.cell.X::before,
+.cell.X::after,
+.board.X .cell:not(.X):not(.Circle):hover::before,
+.board.X .cell:not(.X):not(.Circle):hover::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+}
+
+.cell.X::before,
+.board.X .cell:not(.X):not(.Circle):hover::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.cell.X::after,
+.board.X .cell:not(.X):not(.Circle):hover::after {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+/* --X END-- */
+/* --CIRCLE START-- */
+.cell.Circle::before {
+  background-color: #0e0033;
+}
+
+.board.Circle .cell:not(.X):not(.Circle):hover::before,
+.board.Circle .cell:not(.X):not(.Circle):hover::after {
+  background-color: #0b0127;
+}
+
+.cell.Circle::before,
+.cell.Circle::after,
+.board.Circle .cell:not(.X):not(.Circle):hover::before,
+.board.Circle .cell:not(.X):not(.Circle):hover::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cell.Circle::before,
+.board.Circle .cell:not(.X):not(.Circle):hover::before {
+  width: var(--mark-size);
+  height: var(--mark-size);
+}
+
+.cell.Circle::after,
+.board.Circle .cell:not(.X):not(.Circle):hover::after {
+  width: calc(var(--mark-size) * 0.7);
+  height: calc(var(--mark-size) * 0.7);
+  background-color: white;
+}
+
+/* --CIRCLE END-- */
+/* --WINNING MESSAGE START-- */
+.winning-message {
+  position: absolute;
+  top: -1000px;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.winningContainer {
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 600px;
+  height: 80vh;
+  margin: auto;
+  background: #fff;
+  color: #fff;
+  padding: 3rem;
+}
+
+.winningContainer > div {
+  font-size: 2rem;
+  -webkit-background-clip: text;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+}
+
+.winning-message button {
+  font-size: 3rem;
+  background-color: transparent;
+  padding: 0.25em 0.5em;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.winning-message button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.winning-message button:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.winning-message.show {
+  top: 0;
+}
+
+/* --WINNING MESSAGE END-- */
+.selectFirstPlayer {
+  position: absolute;
+  top: -1000px;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+#selectPlayer {
+  font-size: 2rem;
+  -webkit-background-clip: text;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+}
+
+.selectplayerContainer {
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 600px;
+  height: 80vh;
+  margin: auto;
+  background: #fff;
+  color: #fff;
+  padding: 3rem;
+}
+
+#playerChoice {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.selectFirstPlayer button {
+  font-size: 3rem;
+  cursor: pointer;
+  background-color: transparent;
+  outline: 0;
+  border: 0;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.selectFirstPlayer button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.selectFirstPlayer button:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.selectFirstPlayer.show {
+  top: 0;
+}
+
+.navigation {
+  width: 50vw;
+  height: 50px;
+  display: none;
+  background: transparent;
+  -webkit-transform: translateY(17rem);
+          transform: translateY(17rem);
+  position: absolute;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  z-index: 8;
+}
+
+.navigation button {
+  font-size: 1.5rem;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: #000;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.navigation button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.navigation button:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.navigation.show {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .cursor {
   cursor: pointer;
 }
 
 .remCursor {
   cursor: default;
+}
+
+#aiRules, #locRules {
+  font-size: 2rem;
+  -webkit-background-clip: text;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+}
+
+#aiRules .aiRule, #aiRules .locRule, #locRules .aiRule, #locRules .locRule {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.rules {
+  position: absolute;
+  top: -1000px;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  opacity: 0;
+  -webkit-animation: fade 0.1s linear forwards;
+          animation: fade 0.1s linear forwards;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+}
+
+.rulesConts {
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 600px;
+  height: 80vh;
+  margin: auto;
+  background: #fff;
+  color: #fff;
+  padding: 3rem;
+}
+
+#rulesOpts {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.rules button {
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 2rem;
+  width: 200px;
+  border: 1px solid #011627;
+  background-color: #011627;
+  color: #fff;
+  outline: 0;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.rules button:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.rules button:active {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.rules.show {
+  top: 0;
 }
 
 .hover {
@@ -211,12 +653,30 @@ svg {
   width: 200px;
 }
 
-.active {
+.activePlayer {
   background-color: #0b0127 !important;
   color: #fff !important;
 }
 
 .red {
   background: #770000;
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 /*# sourceMappingURL=game.css.map */

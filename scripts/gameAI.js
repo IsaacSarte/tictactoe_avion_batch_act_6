@@ -249,6 +249,6 @@ const init = (player, Opponent) => {
     const printOnBoard = (player, i, j) => {
         let turnMove = player === 'X' ? nextTurn.textContent = "O's Turn" : nextTurn.textContent = "X's Turn";
         let symImg = player === 'X' ? xImage : oImage;
-        context.drawImage(symImg, j * space, i * space);
+        context.drawImage(symImg,  j * space, i * space);
     }
 }

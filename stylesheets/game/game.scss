@@ -2,6 +2,11 @@ body {
     height: 100vh;
 }
 
+:root {
+    --cell-size: 150px;
+    --mark-size: calc(var(--cell-size) * 0.9);
+}
+
 svg {
     position: absolute;
 }
@@ -24,6 +29,7 @@ svg {
     padding-top: 20vh;
 }
 
+// AI Board Stylings
 .container {
     position: relative;
     display: flex;
@@ -31,14 +37,13 @@ svg {
     align-items: center;
     top: 30vh;
     margin: 0 auto;
+    opacity: 0;
+    animation: fade 1s linear forwards;
+    animation-delay: 4s;
 
-    #boardCVS {
+    .boardCVS {
         position: absolute;
         border: 1px solid #000;
-    }
-
-    #boardCVS:hover {
-        background: #bfbfbf;
     }
 
     .playerOpt {
@@ -64,7 +69,7 @@ svg {
             display: inline-block;
         }
 
-        .pc, .x {
+        .pc, .x, .x2 {
             padding: 5px;
             background: #fff;
             color: #000;
@@ -78,7 +83,7 @@ svg {
             margin-top: 5%;
         }
 
-        .local, .o {
+        .local, .o, .o2 {
             padding: 5px;
             background-color: #fff;
             color: #000;
@@ -95,14 +100,20 @@ svg {
         .local:hover,
         .pc:hover,
         .x:hover,
-        .o:hover {
+        .o:hover,
+        .x2:hover,
+        .o2:hover {
             background-color: #011627;
             color: #fff;
         }
 
+        .xHide,.oHide {
+            display: none;
+        }
+
         .play {
             font-size: 1.5em;
-            width: 100px;
+            width: 200px;
             display: block;
             margin: 25px auto;
             border-radius: 5px;
@@ -116,7 +127,11 @@ svg {
         }
 
         .play:hover{
-            width: 120px;
+            width: 250px;
+        }
+
+        .sHide {
+            display: none;
         }
     }
 }
@@ -140,12 +155,343 @@ svg {
     }
 }
 
+// Friend Board Stylings
+.board {
+    position: fixed;
+    width: 100vw;
+    height: 90vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell.X,
+.cell.Circle {
+  cursor: not-allowed;
+}
+
+/* --X START-- */
+.cell.X::before,
+.cell.X::after {
+  background-color: #011627;
+}
+
+.board.X .cell:not(.X):not(.Circle):hover::before,
+.board.X .cell:not(.X):not(.Circle):hover::after {
+  background-color: #021f36;
+}
+
+.cell.X::before,
+.cell.X::after,
+.board.X .cell:not(.X):not(.Circle):hover::before,
+.board.X .cell:not(.X):not(.Circle):hover::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--mark-size) * 0.15);
+  height: var(--mark-size);
+}
+
+.cell.X::before,
+.board.X .cell:not(.X):not(.Circle):hover::before {
+  transform: rotate(45deg);
+}
+
+.cell.X::after,
+.board.X .cell:not(.X):not(.Circle):hover::after {
+  transform: rotate(-45deg);
+}
+/* --X END-- */
+
+/* --CIRCLE START-- */
+.cell.Circle::before {
+  background-color: #0e0033;
+}
+
+.board.Circle .cell:not(.X):not(.Circle):hover::before,
+.board.Circle .cell:not(.X):not(.Circle):hover::after {
+  background-color: #0b0127;
+}
+
+.cell.Circle::before,
+.cell.Circle::after,
+.board.Circle .cell:not(.X):not(.Circle):hover::before,
+.board.Circle .cell:not(.X):not(.Circle):hover::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+}
+
+.cell.Circle::before,
+.board.Circle .cell:not(.X):not(.Circle):hover::before {
+  width: var(--mark-size);
+  height: var(--mark-size);
+}
+
+.cell.Circle::after,
+.board.Circle .cell:not(.X):not(.Circle):hover::after {
+  width: calc(var(--mark-size) * 0.7);
+  height: calc(var(--mark-size) * 0.7);
+  background-color: white;
+}
+/* --CIRCLE END-- */
+
+/* --WINNING MESSAGE START-- */
+.winning-message {
+    position: absolute;
+    top: -1000px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.4s ease;
+}
+
+.winningContainer {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 80vh;
+    margin: auto;
+    background: #fff;
+    color: #fff;
+    padding: 3rem;
+}
+
+.winningContainer > div {
+    font-size: 2rem;
+    -webkit-background-clip: text;
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+}
+
+.winning-message button {
+    font-size: 3rem;
+    background-color: transparent;
+    padding: 0.25em 0.5em;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.winning-message button:hover {
+    transform: scale(1.05);
+}
+
+.winning-message button:active {
+    transform: scale(0.9);
+}
+
+.winning-message.show {
+    top: 0;
+}
+/* --WINNING MESSAGE END-- */
+
+.selectFirstPlayer {
+    position: absolute;
+    top: -1000px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.4s ease;
+}
+
+#selectPlayer {
+    font-size: 2rem;
+    -webkit-background-clip: text;
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+}
+
+.selectplayerContainer {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 80vh;
+    margin: auto;
+    background: #fff;
+    color: #fff;
+    padding: 3rem;
+}
+
+#playerChoice {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.selectFirstPlayer button {
+    font-size: 3rem;
+    cursor: pointer;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    transition: all 0.2s ease;
+}
+
+.selectFirstPlayer button:hover {
+    transform: scale(1.05);
+}
+
+.selectFirstPlayer button:active {
+    transform: scale(0.9);
+}
+  
+.selectFirstPlayer.show {
+    top: 0;
+}
+
+
+.navigation {
+    width: 50vw;
+    height: 50px;
+    display: none;
+    background: transparent;
+    transform: translateY(17rem);
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    z-index: 8;
+
+    button {
+        font-size: 1.5rem;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        color: #000;
+        transition: all 0.2s ease;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+    }
+
+    button:active {
+        transform: scale(0.9);
+    }
+}
+
+.navigation.show {
+    display: flex;
+}
+
 .cursor {
     cursor: pointer;
 }
 
 .remCursor {
     cursor: default;
+}
+
+// Rules Styling
+#aiRules, #locRules {
+    font-size: 2rem;
+    -webkit-background-clip: text;
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+
+    .aiRule, .locRule {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+        text-align: left;
+    }
+}
+
+.rules {
+    position: absolute;
+    top: -1000px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fade 0.1s linear forwards;
+    animation-delay: 3s;
+}
+
+.rulesConts {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 80vh;
+    margin: auto;
+    background: #fff;
+    color: #fff;
+    padding: 3rem;
+}
+
+#rulesOpts {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.rules button {
+    font-size: 2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 2rem;
+    width: 200px;
+    border: 1px solid #011627;
+    background-color: #011627;
+    color: #fff;
+    outline: 0;
+    transition: all 0.2s ease;
+}
+
+.rules button:hover {
+    transform: scale(1.05);
+}
+
+.rules button:active {
+    transform: scale(0.9);
+}
+
+.rules.show {
+    top: 0;
 }
 
 .hover {
@@ -193,11 +539,20 @@ svg {
     }
 }
 
-.active {
+.activePlayer {
     background-color: #0b0127 !important;
     color: #fff !important;
 }
 
 .red {
     background: rgb(119, 0, 0);
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }

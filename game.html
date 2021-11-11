@@ -21,10 +21,10 @@
     <header>
         <a href="" class="logo">Tic Tac Toe</a>
         <div class="toggle"></div>
-        <ul class="nav">
+        <ul class="ul_nav">
             <li><a href="index.html">Home</a></li>
             <li><a href="game.html">Play</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="#">Code</a></li>
         </ul>
     </header>
 
@@ -32,13 +32,13 @@
 
     <div class="circle-left fade-in-svg">
         <svg>
-            <circle cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
+            <circle class="circL" cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
         </svg>
     </div>
 
     <div class="circle-right fade-in-svg">
         <svg>
-            <circle cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
+            <circle class="circR" cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
         </svg>
     </div>
 
@@ -47,22 +47,105 @@
         <div class="turnMove hide">
             <p class="turnMove__who"></p>
         </div>
+
+        <div class="navigation">
+            <button id="previousMove">
+              Previous Move
+            </button>
+            <button id="restart2">
+              Restart
+            </button>
+            <button id="nextMove" disabled>
+              Next Move
+            </button>
+        </div>
         
-        <canvas id="boardCVS" width="450px" height="450px"></canvas>
+        <!-- AI Board -->
+        <canvas id="boardCVS" class="boardCVS" width="450px" height="450px"></canvas>
+
+        <!-- Friend Board -->
+        <div class="board hide" id="board">
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+            <div class="cell" data-cell></div>
+        </div>
+
         <div class="playerOpt">
             <h2 class="pTitle">Play Against: </h2>
-            <div class="pc">PC</div>
+            <div class="pc">AI</div>
             <div class="local">FRIEND</div>
 
-            <h2 class="pTitle__sym">Player 1 Choose Your Symbol: </h2>
-            <div class="x">X</div>
-            <div class="o">O</div>
+        <h2 class="pTitle__sym hide">Player 1 Choose Your Symbol: </h2>
+        <div class="playerSym">
+            <div class="x xHide">X</div>
+            <div class="o oHide">O</div>
+        </div>
 
-            <div class="play">START</div>
+            <div class="play sHide">START Practice</div>
         </div>
 
         <div class="gameOver hide"></div>
 
+
+    </div>
+
+    <div class="winning-message" id="winningMessage">
+        <div class="winningContainer">
+          <div data-winning-message-text>X WINS!</div>
+          <button id="restartButton">
+            Restart
+          </button>
+          <button id="checkMoves">
+            Check Moves
+          </button>
+        </div>
+    </div>
+
+    <div class="rules">
+        <div class="rulesConts">
+            <div id="aiRules">vs AI/Practice Rules: <br/>
+                <div class="aiRule">
+                    • Harder Difficulty <br/>
+                    • No Showing of Symbols on Board Hover <br/>
+                    • No Showing of the History of the Game <br/>
+                </div>
+            </div>
+            <div id="locRules">vs Friend Rules: <br/>
+                <div class="locRule">
+                    • Difficulty based on You Both 😉 <br/>
+                    • Showing of Symbols on Board Hover <br/>
+                    • Can Show the History of the Game <br/>
+                </div>
+            </div>
+            <div id="rulesOpts">
+                <button id="okay">
+                    Okay!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="selectFirstPlayer">
+        <div class="selectplayerContainer">
+          <div id="selectPlayer">Player 1 Choose Your Symbol</div>
+          <div id="playerChoice">
+            <button id="playerX">
+              X
+            </button>
+            <button id="playerO">
+              O
+            </button>
+          </div>
+          <button id="playerBack">
+            Back
+          </button>
+        </div>
     </div>
 
     <footer>
@@ -82,8 +165,10 @@
     </script>
 
     <!-- Main Game Functions -->
+    <script src="scripts/navbar.js"></script>
     <script src="scripts/opt.js"></script>
-    <script src="scripts/function.js"></script>
+    <script src="scripts/gameAI.js"></script>
+    <script src="scripts/gameLocal.js"></script>
 
 <!-- End of Script -->
 
