@@ -1,10 +1,11 @@
-const xClass = "X";
-const oClass = "Circle";
+const xClass = "Bayern";
+const oClass = "PSG";
 
 const selectPlayerX = document.querySelector("#playerX");
 const selectPlayerO = document.querySelector("#playerO");
 
 const board = document.querySelector(".board");
+const fbPitch = document.querySelector('.fbPitch');
 const cellElements = document.querySelectorAll(".cell");
 
 const navigation = document.querySelector(".navigation");
@@ -47,6 +48,17 @@ selectPlayerX.addEventListener("click", () => {
     board.classList.remove('hide');
     canvasCS.classList.add('hide');
     selectFirstPlayer.classList.remove("show");
+    mainRestart.classList.remove('hide');
+    fbPitch.classList.remove("hide");
+    ref.innerHTML = 
+    `
+    <video class="vidMatch" id="vidMatch" autoplay>
+        <source src="./assets/matchIntro.mp4" type="video/mp4">
+    </video>
+    <video class="vidRef" id="vidRef" autoplay>
+        <source src="./assets/ref.mp4" type="video/mp4">
+    </video>
+    `;
 })
 
 selectPlayerO.addEventListener("click", () => {
@@ -56,6 +68,17 @@ selectPlayerO.addEventListener("click", () => {
     board.classList.remove('hide');
     canvasCS.classList.add('hide');
     selectFirstPlayer.classList.remove("show");
+    mainRestart.classList.remove('hide');
+    fbPitch.classList.remove("hide");
+    ref.innerHTML = 
+    `
+    <video class="vidMatch" id="vidMatch" autoplay>
+        <source src="./assets/matchIntro.mp4" type="video/mp4">
+    </video>
+    <video class="vidRef" id="vidRef" autoplay>
+        <source src="./assets/ref.mp4" type="video/mp4">
+    </video>
+    `;
 })
 
 /* --PLAYER ACTION ON CLICK-- */
@@ -63,14 +86,24 @@ const handleClick = (e) => {
     const cell = e.target;
     placeMark(cell, currentClass);
     if (checkwin(currentClass)) {
-      winInnerText.innerHTML = `${currentClass} Wins!`;
+      winInnerText.innerHTML = `
+        ${currentClass} Wins!
+        <video class="vidRef" id="vidRef" autoplay>
+            <source src="./assets/ref.mp4" type="video/mp4">
+        </video>
+        <video class="vidGoal" id="vidGoal" autoplay>
+            <source src="./assets/goalSong.mp4" type="video/mp4">
+        </video>
+      `;
       winningMessage.classList.add("show");
+      mainRestart.classList.add('hide');
       updatedBoardStatus();
       updateMoves();
     } 
     else if (isDraw()) {
       winInnerText.innerHTML = `DRAW!`;
       winningMessage.classList.add("show");
+      mainRestart.classList.add('hide');
     } 
     else {
       updatedBoardStatus();
@@ -86,15 +119,15 @@ const placeMark = (cell, currentClass) => {
   
 /*--SWAP TURNS, CHANGES BOARD CLASS-- */
 const swapTurns = () => {
-    if (currentClass === "X") {
-      board.classList.remove("X");
-      board.classList.add("Circle");
-      currentClass = "Circle";
+    if (currentClass === "Bayern") {
+      board.classList.remove("Bayern");
+      board.classList.add("PSG");
+      currentClass = "PSG";
     } 
     else {
-      board.classList.remove("Circle");
-      board.classList.add("X");
-      currentClass = "X";
+      board.classList.remove("PSG");
+      board.classList.add("Bayern");
+      currentClass = "Bayern";
     }
 };
   
@@ -111,9 +144,9 @@ const updatedBoardStatus = () => {
     let mark = "";
   
     for (let i = 0; i < cellElements.length; i++) {
-      if (cellElements[i].classList.contains("X")) {
+      if (cellElements[i].classList.contains("Bayern")) {
         mark = "x";
-      } else if (cellElements[i].classList.contains("Circle")) {
+      } else if (cellElements[i].classList.contains("PSG")) {
         mark = "o";
       } else {
         mark = "";
@@ -151,7 +184,7 @@ const checkwin = (currentClass) => {
 /* --CHECK FOR DRAW START-- */
 const isDraw = () => {
     return [...cellElements].every((cell) => {
-      return cell.classList.contains("X") || cell.classList.contains("Circle");
+      return cell.classList.contains("Bayern") || cell.classList.contains("PSG");
     });
 };
 /* --CHECK FOR DRAW END-- */
@@ -221,9 +254,9 @@ const updateBoardOnClick = () => {
         div.classList.add("cell");
   
         if (history[move][i][j] === "x") {
-          div.classList.add("X");
+          div.classList.add("Bayern");
         } else if (history[move][i][j] === "o") {
-          div.classList.add("Circle");
+          div.classList.add("PSG");
         }
         board.append(div);
       }

@@ -20,7 +20,7 @@
     </div>
 
     <header>
-        <a href="" class="logo">Tic Tac Toe</a>
+        <a href="" class="logo">UTL</a>
         <div class="toggle"></div>
         <ul class="ul_nav">
             <li><a href="index.html">Home</a></li>
@@ -32,11 +32,12 @@
     <section class="home" id="home">
 
         <div class="left aniLeft">
-            <p class="pVersion">Version P1.0</p>
-            <h1 class="heading">Welcome to Tic Tac Toe</h1>
+            <p class="pVersion">Version P2.0</p>
+            <h1 class="heading">UEFA Tic Tac Toe League</h1>
                 <br/>
-            <h1>Practice against AI with Strict Rules or</h1>
-            <h1>Play against your Friend/s for Fun <br/> with Less Difficult Rules</h1>
+            <h1>Practice in Training Grounds with Strict Rules or</h1>
+            <h1>Play against your Friend/s with Less Difficult Rules</h1>
+            <h1>Play Football in Tic Tac Toe Mode</h1>
             <p>by Isaac Sarte</p>
             <button onclick="location.href='game.html';">Play Now</button>
         </div>
@@ -81,6 +82,11 @@
             <img src="assets/homeBot.png" />
         </div>
 
+        <!-- Video Background -->
+        <video class="vidBack" id="vidBack" loop>
+            <source src="./assets/UCLHome.mp4" type="video/mp4">
+        </video>
+
     </section>
 
 <!-- Script -->
@@ -92,6 +98,16 @@
         function vanish() {
             loader.classList.add("disappear");
         }
+    </script>
+
+    <script type="text/javascript">
+        var video = document.getElementById("vidBack");
+        video.addEventListener("canplay", function() {
+            setTimeout(function() {
+                video.play();
+                video.volume = 0.1;
+            }, 4500);
+        });
     </script>
     <script src="scripts/navbar.js"></script>
 

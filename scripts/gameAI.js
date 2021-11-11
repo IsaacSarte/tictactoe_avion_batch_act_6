@@ -240,14 +240,18 @@ const init = (player, Opponent) => {
             <h1>${message}</h1>
             <img class = "winner-img" src = ${imgSrc} </img>
             <div class = "play" onclick = "location.reload()">Play Again?</div>
+            <video class="vidRef" id="vidRef" autoplay>
+                <source src="./assets/ref.mp4" type="video/mp4">
+            </video>
+            <video class="vidGoal" id="vidGoal" autoplay>
+                <source src="./assets/goalSong.mp4" type="video/mp4">
+            </video>
         `;
         gameOver.classList.remove('hide');
-        whoseTurn.classList.add('hide');
     }
 
     // Draw the board Again
     const printOnBoard = (player, i, j) => {
-        let turnMove = player === 'X' ? nextTurn.textContent = "O's Turn" : nextTurn.textContent = "X's Turn";
         let symImg = player === 'X' ? xImage : oImage;
         context.drawImage(symImg,  j * space, i * space);
     }

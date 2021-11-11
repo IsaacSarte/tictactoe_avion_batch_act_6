@@ -23,6 +23,8 @@ const playBtn = document.querySelector('.play');
 const rules = document.querySelector('.rules');
 const okay = document.querySelector('#okay');
 
+// When Game Starts
+const ref = document.querySelector('.ref');
 
 // When Game is Over
 const gameOver = document.querySelector('.gameOver');
@@ -30,12 +32,23 @@ const gameOver = document.querySelector('.gameOver');
 const player = new Object;
 let Opponent;
 
+// Main Restart
+const mainRestart = document.querySelector("#restartBtn");
+mainRestart.classList.add('hide');
+mainRestart.addEventListener('click', () => {
+    location.reload();
+})
 
 // Rules
 rules.classList.add('show');
 
 okay.addEventListener('click', () => {
     rules.classList.remove('show');
+    var video = document.getElementById("vidBack");
+    video.remove();
+    var crowd = document.getElementById("vidCrowd");
+    crowd.play();
+    crowd.volume = 0.2;
 })
 
 // X or O is clicked
@@ -70,8 +83,8 @@ pcBtn.addEventListener('click', () => {
 // A Whole New Function will be Used
 locBtn.addEventListener('click', () => {
     switchActive(pcBtn, locBtn);
-    circL.style.fill = '#bfbfbf';
-    circR.style.fill = '#bfbfbf';
+    circL.style.fill = '#0B1024';
+    circR.style.fill = '#0B1024';
     playBtn.classList.add('sHide');
     xBtn.classList.add('xHide');
     oBtn.classList.add('oHide');
@@ -100,11 +113,15 @@ playBtn.addEventListener('click', () => {
     }
     init(player, Opponent);
     options.classList.add('hide');
-    whoseTurn.classList.remove('hide');
-    whoseTurn.classList.add('remCursor');
     mainContainer.classList.add('cursor');
-    nextTurn.textContent = "Player 1's Turn";
-    canvasCS.style.border = "none";
+    canvasCS.classList.add('boardImg');
+    mainRestart.classList.remove('hide');
+    ref.innerHTML = 
+    `
+    <video class="vidRef" id="vidRef" autoplay>
+        <source src="./assets/ref.mp4" type="video/mp4">
+    </video>
+    `;
 })
 
 const switchActive = (off, on) => {

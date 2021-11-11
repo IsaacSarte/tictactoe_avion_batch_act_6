@@ -24,11 +24,35 @@ svg {
           transform: rotate(180deg);
 }
 
+.vidBack, .vidCrowd, .vidGoal, .vidRef, .vidMatch {
+  display: none;
+}
+
 .heading {
   text-align: center;
   font-size: 2rem;
   color: #000;
   padding-top: 20vh;
+}
+
+.restartBtn {
+  margin-top: 1rem;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.restartBtn #restartBtn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  background: transparent;
+  -webkit-transform: translateX(46vw);
+          transform: translateX(46vw);
+  z-index: 8;
 }
 
 .container {
@@ -56,6 +80,10 @@ svg {
   border: 1px solid #000;
 }
 
+.container .boardImg {
+  background-image: url("/assets/images/fbPitch.png");
+}
+
 .container .playerOpt {
   position: absolute;
   width: 450px;
@@ -80,7 +108,11 @@ svg {
   display: inline-block;
 }
 
-.container .playerOpt .pc, .container .playerOpt .x, .container .playerOpt .x2 {
+.container .playerOpt .playerSym img {
+  height: 140px;
+}
+
+.container .playerOpt .pc, .container .playerOpt .x {
   padding: 5px;
   background: #fff;
   color: #000;
@@ -94,7 +126,7 @@ svg {
   margin-top: 5%;
 }
 
-.container .playerOpt .local, .container .playerOpt .o, .container .playerOpt .o2 {
+.container .playerOpt .local, .container .playerOpt .o {
   padding: 5px;
   background-color: #fff;
   color: #000;
@@ -111,9 +143,7 @@ svg {
 .container .playerOpt .local:hover,
 .container .playerOpt .pc:hover,
 .container .playerOpt .x:hover,
-.container .playerOpt .o:hover,
-.container .playerOpt .x2:hover,
-.container .playerOpt .o2:hover {
+.container .playerOpt .o:hover {
   background-color: #011627;
   color: #fff;
 }
@@ -146,30 +176,11 @@ svg {
   display: none;
 }
 
-.turnMove {
-  background: #011627;
-  width: 30%;
-  height: 50px;
-  border-radius: 15px;
-  -webkit-transform: translateY(-17rem);
-          transform: translateY(-17rem);
+.fbPitch {
+  width: 450px;
+  height: 450px;
+  background-image: url("/assets/images/fbPitch.png");
   position: absolute;
-}
-
-.turnMove .turnMove__who {
-  font-size: 1.5em;
-  margin-top: 0.25rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-align: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #fff;
 }
 
 .board {
@@ -195,7 +206,8 @@ svg {
   width: 150px;
   height: 150px;
   border: 1px solid black;
-  background-color: white;
+  background-size: cover;
+  background-repeat: no-repeat;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -209,75 +221,65 @@ svg {
   cursor: pointer;
 }
 
-.cell.X,
-.cell.Circle {
+.cell.Bayern,
+.cell.PSG {
   cursor: not-allowed;
 }
 
 /* --X START-- */
-.cell.X::before,
-.cell.X::after {
-  background-color: #011627;
+.cell.Bayern::before,
+.cell.Bayern::after {
+  background: url("/assets/uclX.png");
 }
 
-.board.X .cell:not(.X):not(.Circle):hover::before,
-.board.X .cell:not(.X):not(.Circle):hover::after {
-  background-color: #021f36;
+.board.Bayern .cell:not(.Bayern):not(.PSG):hover::before,
+.board.Bayern .cell:not(.Bayern):not(.PSG):hover::after {
+  background: url("/assets/uclX.png");
 }
 
-.cell.X::before,
-.cell.X::after,
-.board.X .cell:not(.X):not(.Circle):hover::before,
-.board.X .cell:not(.X):not(.Circle):hover::after {
+.cell.Bayern::before,
+.cell.Bayern::after,
+.board.Bayern .cell:not(.Bayern):not(.PSG):hover::before,
+.board.Bayern .cell:not(.Bayern):not(.PSG):hover::after {
   content: "";
   position: absolute;
-  width: calc(var(--mark-size) * 0.15);
-  height: var(--mark-size);
-}
-
-.cell.X::before,
-.board.X .cell:not(.X):not(.Circle):hover::before {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.cell.X::after,
-.board.X .cell:not(.X):not(.Circle):hover::after {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  width: 150px;
+  height: 150px;
+  background-repeat: no-repeat;
 }
 
 /* --X END-- */
 /* --CIRCLE START-- */
-.cell.Circle::before {
-  background-color: #0e0033;
+.cell.PSG::before {
+  background: url("/assets/uclO.png");
 }
 
-.board.Circle .cell:not(.X):not(.Circle):hover::before,
-.board.Circle .cell:not(.X):not(.Circle):hover::after {
-  background-color: #0b0127;
+.board.PSG .cell:not(.Bayern):not(.PSG):hover::before,
+.board.PSG .cell:not(.Bayern):not(.PSG):hover::after {
+  background: url("/assets/uclO.png");
 }
 
-.cell.Circle::before,
-.cell.Circle::after,
-.board.Circle .cell:not(.X):not(.Circle):hover::before,
-.board.Circle .cell:not(.X):not(.Circle):hover::after {
+.cell.PSG::before,
+.cell.PSG::after,
+.board.PSG .cell:not(.Bayern):not(.PSG):hover::before,
+.board.PSG .cell:not(.Bayern):not(.PSG):hover::after {
   content: "";
   position: absolute;
-  border-radius: 50%;
+  background-repeat: no-repeat;
 }
 
-.cell.Circle::before,
-.board.Circle .cell:not(.X):not(.Circle):hover::before {
-  width: var(--mark-size);
-  height: var(--mark-size);
+.cell.PSG::before,
+.board.PSG .cell:not(.Bayern):not(.PSG):hover::before {
+  width: 150px;
+  height: 150px;
 }
 
-.cell.Circle::after,
-.board.Circle .cell:not(.X):not(.Circle):hover::after {
-  width: calc(var(--mark-size) * 0.7);
-  height: calc(var(--mark-size) * 0.7);
-  background-color: white;
+.cell.PSG::after,
+.board.PSG .cell:not(.Bayern):not(.PSG):hover::after {
+  width: 150px;
+  height: 150px;
+  background: url("/assets/uclO.png");
+  background-repeat: no-repeat;
 }
 
 /* --CIRCLE END-- */

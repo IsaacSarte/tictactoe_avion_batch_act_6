@@ -19,7 +19,7 @@
     </div>
 
     <header>
-        <a href="" class="logo">Tic Tac Toe</a>
+        <a href="" class="logo">UTL</a>
         <div class="toggle"></div>
         <ul class="ul_nav">
             <li><a href="index.html">Home</a></li>
@@ -28,25 +28,25 @@
         </ul>
     </header>
 
-    <h1 class="heading bounce-header">Play Tic Tac Toe Now</h1>
+    <h1 class="heading bounce-header">Kick Off</h1>
 
     <div class="circle-left fade-in-svg">
         <svg>
-            <circle class="circL" cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
+            <circle class="circL" cx="150" cy="150" r="150" stroke="#0B1024" stroke-width="3" fill="#0B1024" />
         </svg>
     </div>
 
     <div class="circle-right fade-in-svg">
         <svg>
-            <circle class="circR" cx="150" cy="150" r="150" stroke="#bfbfbf" stroke-width="3" fill="#bfbfbf" />
+            <circle class="circR" cx="150" cy="150" r="150" stroke="#0B1024" stroke-width="3" fill="#0B1024" />
         </svg>
     </div>
 
-    <div class="container fade-in" data-container>
+    <div class="restartBtn">
+        <button id="restartBtn">Restart Match</button>
+    </div>
 
-        <div class="turnMove hide">
-            <p class="turnMove__who"></p>
-        </div>
+    <div class="container fade-in" data-container>
 
         <div class="navigation">
             <button id="previousMove">
@@ -59,9 +59,17 @@
               Next Move
             </button>
         </div>
+
+        <div class="ref">
+
+        </div>
         
         <!-- AI Board -->
         <canvas id="boardCVS" class="boardCVS" width="450px" height="450px"></canvas>
+
+        <div class="fbPitch hide">
+
+        </div>
 
         <!-- Friend Board -->
         <div class="board hide" id="board">
@@ -81,11 +89,11 @@
             <div class="pc">AI</div>
             <div class="local">FRIEND</div>
 
-        <h2 class="pTitle__sym hide">Player 1 Choose Your Symbol: </h2>
-        <div class="playerSym">
-            <div class="x xHide">X</div>
-            <div class="o oHide">O</div>
-        </div>
+            <h2 class="pTitle__sym hide">Player 1 Choose Your Symbol: </h2>
+            <div class="playerSym">
+                <div class="x xHide"><img src="assets/X.png" alt=""></div>
+                <div class="o oHide"><img src="assets/O.png" alt=""></div>
+            </div>
 
             <div class="play sHide">START Practice</div>
         </div>
@@ -109,23 +117,23 @@
 
     <div class="rules">
         <div class="rulesConts">
-            <div id="aiRules">vs AI/Practice Rules: <br/>
+            <div id="aiRules">Training Ground Rules: <br/>
                 <div class="aiRule">
                     • Harder Difficulty <br/>
-                    • No Showing of Symbols on Board Hover <br/>
+                    • No Showing of Symbols on Pitch Hover <br/>
                     • No Showing of the History of the Game <br/>
                 </div>
             </div>
             <div id="locRules">vs Friend Rules: <br/>
                 <div class="locRule">
                     • Difficulty based on You Both 😉 <br/>
-                    • Showing of Symbols on Board Hover <br/>
+                    • Showing of Symbols on Pitch Hover <br/>
                     • Can Show the History of the Game <br/>
                 </div>
             </div>
             <div id="rulesOpts">
                 <button id="okay">
-                    Okay!
+                    Game On
                 </button>
             </div>
         </div>
@@ -136,10 +144,10 @@
           <div id="selectPlayer">Player 1 Choose Your Symbol</div>
           <div id="playerChoice">
             <button id="playerX">
-              X
+              <img src="assets/uclX.png" alt="">
             </button>
             <button id="playerO">
-              O
+              <img src="assets/uclO.png" alt="">
             </button>
           </div>
           <button id="playerBack">
@@ -147,6 +155,15 @@
           </button>
         </div>
     </div>
+
+    <!-- Video Background -->
+    <video class="vidBack" id="vidBack">
+        <source src="./assets/uclTheme.mp4" type="video/mp4">
+    </video>
+
+    <video class="vidCrowd" id="vidCrowd" loop>
+        <source src="./assets/crowd.mp4" type="video/mp4">
+    </video>
 
     <footer>
         <hr/>
@@ -165,6 +182,24 @@
     </script>
 
     <!-- Main Game Functions -->
+    <script type="text/javascript">
+        var video = document.getElementById("vidBack");
+        video.addEventListener("canplay", function() {
+            setTimeout(function() {
+                video.play();
+                video.volume = 0.3;
+            }, 2500);
+        });
+
+        var crowd = document.getElementById("vidCrowd");
+        crowd.addEventListener("canplay", function() {
+            setTimeout(function() {
+                crowd.play();
+                crowd.volume = 0.2;
+            },1000);
+        });
+    </script>
+
     <script src="scripts/navbar.js"></script>
     <script src="scripts/opt.js"></script>
     <script src="scripts/gameAI.js"></script>
