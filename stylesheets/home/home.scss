@@ -119,8 +119,8 @@ section {
             animation-delay: 4.5s;
 
             img {
-                width: 43vw; 
-                height: 43vh;
+                width: 45vw; 
+                height: 45vh;
             }
         }
 
@@ -136,7 +136,7 @@ section {
                 display: flex;
                 flex-direction: column;
                 list-style: none;
-                transform: translateY(9rem);
+                transform: translateY(12rem);
                 margin-left: 25vw;
                 z-index: 8;
 
@@ -153,25 +153,12 @@ section {
     
                         i:hover {
                             transform: scale(1.2);
-                            color: rgb(72, 0, 103);
+                            color: rgb(160, 160, 160);
                         }
                     }
                 }
             }
         }
-    }
-
-    .bot {
-        z-index: -1;
-        position: absolute;
-        margin-top: auto;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin-left: -6.5vw;
-        opacity: 0;
-        animation: fade_in 1s linear forwards;
-        animation-delay: 2s;
     }
 }
 
