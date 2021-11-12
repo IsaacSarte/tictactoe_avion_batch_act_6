@@ -69,6 +69,7 @@ section {
         button {
             cursor: pointer;
             font-size: 1.25rem;
+            font-weight: 600;
             padding: 0.5rem 2rem;
             background: #fff;
             color: #000;
@@ -118,8 +119,8 @@ section {
             animation-delay: 4.5s;
 
             img {
-                width: 45vw; 
-                height: 45vh;
+                width: 43vw; 
+                height: 43vh;
             }
         }
 
@@ -135,9 +136,9 @@ section {
                 display: flex;
                 flex-direction: column;
                 list-style: none;
-                transform: translateY(8rem);
+                transform: translateY(9rem);
                 margin-left: 25vw;
-                z-index: 1;
+                z-index: 8;
 
                 li {
                     
@@ -161,6 +162,7 @@ section {
     }
 
     .bot {
+        z-index: -1;
         position: absolute;
         margin-top: auto;
         bottom: 0;

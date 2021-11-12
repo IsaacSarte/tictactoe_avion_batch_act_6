@@ -89,6 +89,7 @@ section {
 .home .left button {
   cursor: pointer;
   font-size: 1.25rem;
+  font-weight: 600;
   padding: 0.5rem 2rem;
   background: #fff;
   color: #000;
@@ -152,8 +153,8 @@ section {
 }
 
 .home .right .img img {
-  width: 45vw;
-  height: 45vh;
+  width: 43vw;
+  height: 43vh;
 }
 
 .home .right .scl_fade {
@@ -173,10 +174,10 @@ section {
       -ms-flex-direction: column;
           flex-direction: column;
   list-style: none;
-  -webkit-transform: translateY(8rem);
-          transform: translateY(8rem);
+  -webkit-transform: translateY(9rem);
+          transform: translateY(9rem);
   margin-left: 25vw;
-  z-index: 1;
+  z-index: 8;
 }
 
 .home .right .home_scl .scl li a i {
@@ -194,6 +195,7 @@ section {
 }
 
 .home .bot {
+  z-index: -1;
   position: absolute;
   margin-top: auto;
   bottom: 0;
