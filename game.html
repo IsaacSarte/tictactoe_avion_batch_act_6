@@ -120,14 +120,14 @@
             <div id="aiRules">Training Ground Rules: <br/>
                 <div class="aiRule">
                     • Harder Difficulty <br/>
-                    • No Showing of Symbols on Pitch Hover <br/>
+                    • No Showing of Balls on Pitch Hover <br/>
                     • No Showing of the History of the Game <br/>
                 </div>
             </div>
             <div id="locRules">vs Friend Rules: <br/>
                 <div class="locRule">
                     • Difficulty based on You Both 😉 <br/>
-                    • Showing of Symbols on Pitch Hover <br/>
+                    • Showing of Balls on Pitch Hover <br/>
                     • Can Show the History of the Game <br/>
                 </div>
             </div>
@@ -193,10 +193,8 @@
 
         var crowd = document.getElementById("vidCrowd");
         crowd.addEventListener("canplay", function() {
-            setTimeout(function() {
-                crowd.play();
-                crowd.volume = 0.2;
-            },1000);
+            crowd.play();
+            crowd.volume = 0.2;
         });
     </script>
 
