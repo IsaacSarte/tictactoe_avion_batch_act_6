@@ -79,7 +79,7 @@ const init = (player, Opponent) => {
 
         // Tie?
         if(isTie(gameData)) {
-            showGameOver("TIE!");
+            showGameOver("DRAW!");
             game_over = true;
             return;
         }
@@ -106,7 +106,7 @@ const init = (player, Opponent) => {
 
             // Tie?
             if(isTie(gameData)) {
-                showGameOver("TIE!");
+                showGameOver("DRAW!");
                 game_over = true;
                 return;
             }

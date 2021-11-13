@@ -567,3 +567,124 @@ svg {
         opacity: 1;
     }
 }
+
+    // Phone Queries
+    @media screen and (min-width: 376px) and (max-width: 425px) {
+        svg {
+            display: none;
+        }
+        .selectplayerContainer,
+        .rulesConts {
+            transform: scale(0.7);
+            position: absolute;
+            top: -150px;
+            height: 1000px;
+        }
+    }
+    @media screen and (min-width: 320px) and (max-width: 375px) {
+        svg {
+            display: none;
+        }
+        .selectplayerContainer,
+        .rulesConts,
+        .winningContainer {
+            transform: scale(0.7);
+            position: absolute;
+            top: -150px;
+            width: 500px;
+            height: 1000px;
+        }
+        .container {
+            .playerOpt {
+                width: 375px;
+                .pTitle {
+                    margin-top: -8%;
+                }
+                .pc, .local {
+                    padding: 4px;
+                    font-size: 1em;
+                    margin-left: 1.25rem;
+                }
+                .x, .o {
+                    width: 75px;
+                }
+                .pTitle__sym {
+                    margin-top: 10%;
+                    font-size: 1em;
+                }
+                .playerSym {
+                    margin-top: 0%;
+                    margin-left: 2.25rem;
+                    img {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+                .play {
+                    font-size: 1em;
+                    width: 150px;
+                }
+            }
+            .boardCVS {
+                width: 250px;
+                height: 250px;
+            }
+        }
+        .restartBtn {
+            #restartBtn {
+                transform: translateX(30vw);
+            }
+        }
+        .gameOver {
+            width: 250px;
+            height: 250px;
+            h1 {
+                font-size: 30px;
+            }
+            .winner-img {
+                width: 75px;
+                height: 75px;
+            }
+            .play {
+                font-size: 1em;
+            }
+        }
+        .fbPitch {
+            width: 250px;
+            height: 250px;
+            background-position: center;
+            background-size: cover;
+        }
+        .cell {
+            width: 83px;
+            height: 83px;
+        }
+        .cell.Bayern::before,
+        .cell.Bayern::after,
+        .board.Bayern .cell:not(.Bayern):not(.PSG):hover::before,
+        .board.Bayern .cell:not(.Bayern):not(.PSG):hover::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 75px;
+            background-repeat: no-repeat;
+        }
+        .cell.PSG::before,
+        .board.PSG .cell:not(.Bayern):not(.PSG):hover::before {
+            width: 80px;
+            height: 75px;
+        }
+        .cell.PSG::after,
+        .board.PSG .cell:not(.Bayern):not(.PSG):hover::after {
+            width: 80px;
+            height: 75px;
+            background: url('https://scontent.fmnl13-2.fna.fbcdn.net/v/t1.15752-9/256718088_854397111846094_8466162913187202330_n.png?_nc_cat=107&ccb=1-5&_nc_sid=ae9488&_nc_eui2=AeHohzVOBvWK3qnMpzZe8d_9ZNnWMhPs3cNk2dYyE-zdw199ORTGWAsVS_He1dG0BYG_7_fo0NFQR96mYtKs1QIr&_nc_ohc=sYSjh0wFyawAX_wmucB&_nc_oc=AQk2m53YGp_oqXS7XX2VPgW4i5umHYkg5d1ATeY8BXGjmYlRlRm9Pg2ObhtNf8dsjrmX0tlVvXyhOS-3abdMYrY3&_nc_ht=scontent.fmnl13-2.fna&oh=3ab1e0ec7a50857f7825cf2defda488b&oe=61B4E900');
+            background-repeat: no-repeat;
+        }
+        .navigation.show {
+            transform: translateY(12rem);
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+    }

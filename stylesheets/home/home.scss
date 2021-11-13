@@ -377,3 +377,75 @@ section {
     }
 
     // Phone Queries
+    @media screen and (min-width: 376px) and (max-width: 425px) {
+        .home {
+            .left {
+                .heading {
+                    text-align: center;
+                    font-size: 2rem;
+                }
+                h1 {
+                    font-size: 1rem;
+                }
+                p {
+                    font-size: 1rem;
+                }
+                button {
+                    font-size: 1rem;
+                    padding: 0.25rem 1rem;
+                }
+            }
+            .right {
+                .img {
+                    margin-top: -13rem;
+                    margin-left: 0.5rem;
+                    img {
+                        width: 80vw;
+                        height: 35vw;
+                    }
+                }
+                .home_scl {
+                    .scl {
+                        flex-direction: row;
+                        transform: translateY(0rem);
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 320px) and (max-width: 375px) {
+        .home {
+            .left {
+                .heading {
+                    text-align: center;
+                    font-size: 2rem;
+                }
+                h1 {
+                    font-size: 1rem;
+                }
+                p {
+                    font-size: 1rem;
+                }
+                button {
+                    font-size: 1rem;
+                    padding: 0.25rem 1rem;
+                }
+            }
+            .right {
+                .img {
+                    margin-top: -13rem;
+                    margin-left: 0.5rem;
+                    img {
+                        width: 80vw;
+                        height: 40vw;
+                    }
+                }
+                .home_scl {
+                    .scl {
+                        flex-direction: row;
+                        transform: translateY(3rem);
+                    }
+                }
+            }
+        }
+    }

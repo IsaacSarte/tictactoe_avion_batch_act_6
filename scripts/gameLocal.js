@@ -162,7 +162,7 @@ const updatedBoardStatus = () => {
     }
   
     history.push([row1, row2, row3]);
-    console.log(history);
+    console.table(history);
 };
   
 /* --UPDATE NUMBER OF MOVE-- */
@@ -219,7 +219,7 @@ previousMove.addEventListener("click", () => {
     nextMove.style.cursor = "pointer";
     move = move - 1;
     updateBoardOnClick();
-    console.log(history[move]);
+    console.table(history[move]);
     console.log(`number of move: ${move + 1}`);
     if (move < 1) {
       previousMove.disabled = true;
@@ -234,7 +234,7 @@ nextMove.addEventListener("click", () => {
     previousMove.style.cursor = "pointer";
     move = move + 1;
     updateBoardOnClick();
-    console.log(history[move]);
+    console.table(history[move]);
     console.log(`number of move: ${move + 1}`);
     if (move === history.length - 1) {
       nextMove.disabled = true;
@@ -249,7 +249,7 @@ const updateBoardOnClick = () => {
     console.log(history[move]);
     for (let i = 0; i < history[move].length; i++) {
       for (let j = 0; j < history[move][i].length; j++) {
-        console.log(history[move][i][j]);
+        console.table(history[move][i][j]);
         let div = document.createElement("div");
         div.classList.add("cell");
   
