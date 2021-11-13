@@ -99,6 +99,9 @@
         var video = document.getElementById("vidBack");
         video.addEventListener("canplay", function() {
             setTimeout(function() {
+                video.muted = true;
+                video.play();
+                video.muted = false;
                 video.play();
                 video.volume = 0.1;
             }, 4500);
