@@ -7,7 +7,7 @@ const init = (player, Opponent) => {
     let ticTacToeBoard = [];
     const row = 3;
     const col = 3;
-    const space = 150;
+    let space = 150;
 
     // Player's Moves Array
     let gameData = new Array(9);
@@ -43,7 +43,15 @@ const init = (player, Opponent) => {
             for (let j = 0; j < col; j++) {
                 ticTacToeBoard[i][j] = id;
                 id++;
-                context.strokeRect(j * space, i * space,  space, space);
+                let mq = window.matchMedia("(max-width: 425px)")
+                if (mq) {
+                    space = 150;
+                    context.strokeRect(j * space, i * space,  space, space);
+                }
+                else {
+                    context.strokeRect(j * space, i * space,  space, space);
+                }
+                
             }
         }
         console.log(ticTacToeBoard);

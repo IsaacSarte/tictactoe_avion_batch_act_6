@@ -1,5 +1,6 @@
 body {
     height: 100vh;
+    overflow: hidden;
 }
 
 :root {
@@ -583,6 +584,10 @@ svg {
             height: 1000px;
         }
         .container {
+            .boardImg {
+                background-position: center;
+                background-size: cover;
+            }
             .playerOpt {
                 width: 375px;
                 .pTitle {
